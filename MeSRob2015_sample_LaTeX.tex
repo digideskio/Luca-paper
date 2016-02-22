@@ -1,0 +1,178 @@
+%%%%%%%%%%%%%%%%%%%% author.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% sample root file for your "contribution" to a contributed volume
+%
+% Use this file as a template for your own input.
+%
+%%%%%%%%%%%%%%%%%%%% author.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% RECOMMENDED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{svmult}
+
+% Choose options for [] as required from the list in the Reference Guide
+
+\usepackage{mathptmx}			% selects Times Roman as basic font
+\usepackage{helvet}         		% selects Helvetica as sans-serif font
+\usepackage{courier}        		% selects Courier as typewriter font
+\usepackage{type1cm}        		% activate if the above 3 fonts are
+                            				% not available on your system
+						%
+\usepackage{makeidx}      	   	% allows index generation
+\usepackage{graphicx}        		% standard LaTeX graphics tool
+                             				% when including figure files
+\usepackage{multicol}        		% used for the two-column index
+\usepackage[bottom]{footmisc}		% places footnotes at page bottom
+\usepackage{amsmath,amssymb,epsfig}
+\usepackage{epstopdf}
+
+% See the list of further useful packages in the Reference Guide
+
+\makeindex    % used for the subject index
+                      % please use the style svind.ist with
+                      % your makeindex program
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\title*{Gaze-based control of a swarms of robots using electroencephalography} 	% Fix!
+
+% Use \titlerunning{Short Title} for an abbreviated version of your contribution title if the original one is too long
+
+\author{Luca Mondada$^1$, Mohammad Ehsanul Karim$^2$, and Francesco Mondada$^2$}
+\authorrunning{L Mondada, M E Karim and F Mondada}
+
+% Use \authorrunning{Short Title} for an abbreviated version of your contribution title if the original one is too long
+
+\institute{$^1$Department of Physics, Swiss Federal Institute of Technology ETHZ, Z\"urich, Switzerland, \email{Email address} \\
+$^2$Laboratoire de Syst\`emes Robotiques, Ecole Polytechnique F\'ed\'erale de Lausanne, Lausanne, Switzerland, \email{Email address}} % Fix!
+
+
+% Use the package "url.sty" to avoid
+% problems with special characters
+% used in your e-mail or web address
+
+\maketitle
+
+\abstract{
+	Literature shows, several gesture and speech recognition based techniques have been explored to perform interactive control of swarm-robots. Indeed, search and rescue operations could benefit from an efficient control of a human over a group of robots. However such techniques are not quite intuitive in establishing connection between the user and a single robot. This study systematically investigates electroencephalography (EEG) signals to detect the robot the user is looking at and subsequently select it based on analyzing the steady-state visually evoked potential (SSVEP). SSVEP has a neural response to a regularly blinking visual stimulation that varies depending on the visual stimulation frequency. In our experiments, the LEDS on the robots blinked at different frequencies, and the corresponding SSVEP signal was analyzed to detect and select the robot.
+
+	This study systematically studies several factors (algorithm, distance, LED/light color) which directly impacts the efficiency of the system. Based on the studies proposes a methodology or framework, and critically analyze it based on the performance of 10 subjects.
+}
+
+
+\keywords{Please indicate four to five keywords, which will also be used for composing the Subject Index.}
+
+\section{Introduction}
+
+Authors are encouraged to use this document as template for their manuscripts. Please do not change this formatting by introducing inappropriate commands in the text or by fixing the provided class file.
+
+First page of the manuscript will include at least the title of the paper, name of authors, their affiliation and email addresses, abstract and keywords. The paper should also contain an abstract, an introduction, a main text, conclusions, and references.
+
+The manuscript should be written in 10 up to 14 pages.  
+
+Each submission will be rigorously peer reviewed. Accepted papers will be published in a Proceedings book by Springer. 
+
+
+
+\subsection{Paragraphs and indents}
+
+As you will see from the result of this sample paper, the class file will produce subsection titles that are all boldfaced. The indents of the paragraphs are done automatically. Please note that the first line of text that follows a heading is not indented, whereas the first lines of all subsequent paragraphs are. Instead of simply listing headings of different levels we recommend to let every heading be followed by at least a short passage of text.
+
+For unnumbered lists we recommend to use the \textit{itemize} environment -- it will automatically render Springer's preferred layout.
+
+\section{Figures}
+
+Figures should be centered and referenced in the text as, for example, Fig.~\ref{gear}. Please use adequate letter fonts (including size and type) and line width. The example follows. As you see in Fig.~\ref{gear}, the figure caption is automatically generated in the proper format.
+
+\begin{figure}
+\center
+\includegraphics[width=0.35\textwidth]{figure}
+\caption{Please write your figure caption here}\label{gear}
+\end{figure}
+
+\section{Equations}
+
+Equations should be centered and numbered. They should be referenced in the text as, for instance, Eq. (\ref{Newton}). Please use adequate letter fonts (including size and type). An example of equation is as follows
+\begin{equation}\label{Newton}
+\sum\limits_{i = 1}^n {{\mathbf{F}}_{i} }  = m \mathbf{a}_G
+\end{equation}
+
+
+\section{Tables}
+
+Tables should be centered and referenced in the text as, for
+example, Table \ref{tri}.
+
+\begin{table}
+\caption{Please write your table caption here}
+\label{tri}
+\centering
+\begin{tabular}{p{2cm}p{2.4cm}p{2cm}p{2.4cm}}
+\svhline\noalign{\smallskip}
+Description 1 & Description 2 & Description 3 & Description 4  \\
+\hline\noalign{\smallskip}
+Row 1, Col 1 & Row 1, Col 2  & Row 1, Col 3 & Row 1, Col 4\\
+Row 2, Col 1 & Row 2, Col 2  & Row 2, Col 3 & Row 2, Col 4\\
+Row 3, Col 1 & Row 3, Col 2  & Row 3, Col 3 & Row 3, Col 4\\
+\svhline\noalign{\smallskip}
+\end{tabular}
+\end{table}
+
+
+
+
+
+
+\section{Referencing}
+
+The reference list should be in an alphabetical order. The provided
+class file will produce the format you see, which is correct. A citation
+in the paper should have the form \cite{contrib,journal,mono,online} for a contribution in conference proceedings, journal article, monograph and on line document respectively. You can also use bibliography style \textit{spmpsci} in BibTeX.
+
+
+\section{Conclusions}
+Your manuscript must be sent following the instructions and deadlines given on the MeSRob web page \url{www.mesrob2015.irccyn.ec-nantes.fr/}.
+
+\begin{acknowledgement}
+The MeSRob 2015 Local Committee wants to acknowledge the previous MeSRob organizers' help.
+\end{acknowledgement}
+
+\begin{thebibliography}{99.}
+% Use the following syntax and markup for your references
+
+% Contribution in conference proceedings
+\bibitem{contrib} Ceccarelli, M.: The Challenges for Machine and Mechanism Design at the Beginning of the Third Millennium as Viewed from the Past. In:  Proceedings of Brazilian Congress on Mechanical Engineering COBEM2001, Uberlandia, Invited Lecture, pp. 132-151 (2001)
+% Journal article
+\bibitem{journal} Husty, M. L. and Gosselin C.: On the singularity surface of planar 3-RPR parallel mechanisms. Mech. Based Design of Structures and Machines, \textbf{36}, 411--425 (2008)
+% Monograph
+\bibitem{mono} Merlet, J.-P.: Parallel Robots (Series: Solid Mechanics and Its Applications). Springer (2006)
+% Online Document
+\bibitem{online} Viadero, F. \textit{et al.}: A model of spur gears supported by ball bearings. In: Computational Methods and Experimental Measurements XIII (CMEM) Invited lecture (2007) Available via WIT eLibrary. \\
+\url{http://library.witpress.com/pages/PaperInfo.asp?PaperID=18033}
+
+\end{thebibliography}
+
+% Or you can use BibTeX
+%\bibliographystyle{spmpsci}
+%\bibliography{mybib}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
