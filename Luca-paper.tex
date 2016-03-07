@@ -82,9 +82,21 @@ Furthermore, we studied the parameters (frequency, distance, and blinking light 
 
 \section{Material and methods}
 \label{sec:methods}
-In this section, we discuss the devices or instruments (the EEG acquisition device and the robot) and the data analysis techniques used in our experiments. For the acquisition of EEG signals, considering price, portability and researcher review, we decided to use the EMOTIV EPOC EEG headset. Thymio II was used as the robot; this affordable-programmable robot features differential drive system, infrared (IR) remote control receiver and LEDs to change body color \cite{Riedo-et-al-2013}. Its small size ($11 \times 11 \times 5\,\mathit{cm}$) enables swarm experiments. Signal acquisition and processing was done using OpenViBE, an open-source software for BCI design \cite{ov_publication}.\\
+For the acquisition of EEG signals, we decided to use the EMOTIV EPOC EEG headset \cite{stytsenko2011evaluation}. 
+In comparison with other ``consumer'' headsets, this one is expensive (approximatively 700\$ with drivers to access to raw data) but has a large set of electrodes, allowing several types of data acquisition. 
+Moreover it is portable and connected to the computer through a radio link.
+As described in the state of the art, this headset has sufficient features to allow interesting experiments and is compatible with open-source software tools for BCI design.
+Signal acquisition and processing was done using OpenViBE, one of the well known open-source software for BCI design \cite{ov_publication}.
+
+
+Thymio II was used as robot for this project; this affordable-programmable robot features differential drive system, infrared (IR) remote control receiver and LEDs to change body color \cite{Riedo-et-al-2013}. 
+Its small size ($11 \times 11 \times 5\,\mathit{cm}$) and affordable price (approximatively 130\$) make it well suited for swarm experiments. 
+
+The communication between computer and robot was supported by an infrared emitter dongle controlled by USB.
 \\
-Given our human-swarm interaction problem of selecting a particular robot from a swarm of robots; the initial task was to design or select an algorithm. In our study we decided to test two well-known algorithms from literature: linear discriminant analysis (LDA) \cite{openvibeSSVEP} and Lin's canonical correlation analysis (CCA) separator \cite{Lin2014}.\\
+\\
+Given our human-swarm interaction problem of selecting a particular robot from a swarm of robots, the initial task was to design or select an algorithm. 
+In our study we decided to test two well-known algorithms from literature: linear discriminant analysis (LDA) \cite{openvibeSSVEP} and Lin's canonical correlation analysis (CCA) separator \cite{Lin2014}.\\
 
 \section{Study 1: Robot selection using LDA classifier}
 \label{sec:ML_approach}
