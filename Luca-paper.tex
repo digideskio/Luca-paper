@@ -103,16 +103,23 @@ In our study we decided to test two well-known algorithms from literature: linea
 %This section provides details about the experimental setup and the data-collection protocol used for collecting data to test on the LDA-based algorithm \cite{openvibeSSVEP}.\\
 
 \subsection{Experimental setup and data collection}
-We conducted a pilot study with 2 subjects; the subjects had normal or corrected-to-normal vision and no history of major head injury. The participants were instructed to look at an indicated target robot. After the instruction, all three targets began to flicker for 7$s$. During the stimulus, the subjects were asked to look at the blinking light; moreover they were requested to blink as little as possible to limit EEG artifacts. Short breaks were introduced to avoid tiring the subject. This process was repeated until each of the targets had been trained 8 times. The whole training session lasted around 6.5 minutes. Figure \ref{fig:thymioinstall} summarizes the experimental setup. Please note that during the testing phase, the robot's LED turns green as soon as the classification has been made. A video of entire process can be accessed at \verb"www.bit.ly/eucys_eeg". The Thymio robots LED flashing program was scripted in ASEBAStudio; the red LEDs flashed at frequencies 12, 15 and 20$Hz$, in a darkened room, We ran 2 experiments (2 session/experiment). The first session data were used to train the LDA classifier; the second session used the trained classifier to classify the signals and calculate the success rate of the algorithm. The training and testing data collection methodology was identical. Each session collected, all together, 32 trails of EEG signals (7$s$/trail) and break (3$s$/trail); for example, 8 trails for each frequency (12, 15, 20, and 0$Hz$). 
+We conducted a pilot study with 2 subjects; the subjects had normal or corrected-to-normal vision and no history of major head injury. The participants were instructed to look at an indicated target robot. After the instruction, all three targets began to flicker for 7$s$. During the stimulus, the subjects were asked to look at the blinking light; moreover they were requested to blink as little as possible to limit EEG artifacts. Short breaks were introduced to avoid tiring the subject. This process was repeated until each of the targets had been trained 8 times. The whole training session lasted around 6.5 minutes. Figure \ref{fig:thymioinstall} summarizes the experimental setup. Please note that during the testing phase, the robot's LED turns green as soon as the classification has been made. A video of entire process can be accessed at \verb"www.bit.ly/eucys_eeg". The Thymio robots LED flashing program was scripted in ASEBAStudio; the red LEDs flashed at frequencies 12, 15 and 20$Hz$, in a darkened room. These frequencies were chosen based on the literature in the field of screen-based stimulation. We ran 2 experiments (2 session/experiment). The first session data were used to train the spatial filters and the LDA classifier; the second session used the trained classifier to classify the signals and calculate the success rate of the algorithm. The training and testing data collection methodology was identical. Each session collected, all together, 32 trails of EEG signals (7$s$/trail) and break (3$s$/trail); for example, 8 trails for each frequency (12, 15, 20, and 0$Hz$). 
 
 \begin{figure}
 \center
-\includegraphics[width=\textwidth]{figures/Untitled.png}
+\includegraphics[width=\textwidth]{figures/schema-global.pdf}
 \caption{Configuration of the experiment: The left illustrates the spatial arrangement of the experiment; while the right shows the summary of the signal acquisition and processing chain.} \label{fig:thymioinstall}
 \end{figure}
 
+\begin{figure}
+\center
+\includegraphics[width=\textwidth]{figures/schema-openvibe.pdf}
+\caption{Configuration of the processing chain based on the LDA classifier : The first processing line is used to train the spatial filters, the second to train the classifier, and the third is used to test the whole processing chain.} \label{fig:LDA}
+\end{figure}
+
+
 \subsection{Data analysis}
-The 14-channel EEG data from the Emotiv EPOC is first filtered to focus on 12, 15 and 20$Hz$ using three band pass filters of interval ranges: [11.75, 12.25], [14.75, 15.25] and [19.75, 20.25]. For each frequency, the EEG signals were separated into two groups of 14-reconstructed channels using a common spatial pattern (CSP) filter. Later the multi-variant signals were divided into epochs and the signals in the epoch were squared, averaged and followed by a natural logarithm of the value. These values were used to compute the coefficients for the CSP spatial filters and to train the three LDA classifiers. Each of the classifier classified the epoch vector based on the specific observed blink frequency as target and others as non-targets. For details of the processing chain, please refer to \cite{openvibeSSVEP}. 
+As illustrated in Figure~\ref{fig:LDA}, the 14-channel EEG data from the Emotiv EPOC is first filtered to focus on 12, 15 and 20$Hz$ using three band pass filters of interval ranges: [11.75, 12.25], [14.75, 15.25] and [19.75, 20.25]. For each frequency, the EEG signals were separated into two groups of 14-reconstructed channels using a common spatial pattern (CSP) filter. Later the multi-variant signals were divided into epochs and the signals in the epoch were squared, averaged and followed by a natural logarithm of the value. These values were used to compute the coefficients for the CSP spatial filters and to train the three LDA classifiers. Each of the classifier classified the epoch vector based on the specific observed blink frequency as target and others as non-targets. For details of the processing chain, please refer to \cite{openvibeSSVEP}. 
 
 \subsection{Results and discussions}
 For each of the four sessions we carefully studied the CSP filter output. In our experiments we are analyzing SSVEP signals, therefore, we expected to see large values in regions: P7, O1, O2 and P8 because these provide information about the electrical activity in the occipital lobe. However, we found unpredictable and inconsistent distribution of weights in this region of the brain. In sessions 1 and 2, some importance seems to be given to this part of the brain which would demonstrate some success; however the finding does not hold in sessions 3 and 4. Further analysis shows that the positive responses of the occipital zone as highlighted in sessions 1 and 2 was originated under no blinking condition. In addition, the CSP algorithm sometimes gave great importance to AF4 electrodes and F3 which are frontal electrodes known for the low quality of their signal and their powerful muscle artifacts. Figure \ref{fig: CSP_20} illustrates an example where the CSP filter has attributed low importance to EEG channels in the occipital region known to be neurologically important in the SSVEP process while high importance has been given to noisy and less relevant locations. This malfunctioning of the training process is probably due to the lower quality of the signals acquired by the EEG. As a result, the overall algorithm generated very poor results with a recognition rate close to random.\\
@@ -144,7 +151,9 @@ The short experiments for parameter tuning were similar to the experiment conduc
 q =:\frac{\max F}{\max R}
 \end{equation}
 \\
-The recognition ratio provides the ratio of the highest peak within $[f-1, f+1]$ to the highest peak in the rest of the spectrum. The neural response to a regularly blinking stimulation, called SSVEP, is characterized by a peak in the spectrum of the signal at the same frequency as the blinking frequency. Thus, if the recognition ratio is above 1, then the highest peak is within $1\,\mathit{Hz}$ of $f$, and the SSVEP can be considered detected. Otherwise, the SSVEP cannot be observed. Please note that we decided to consider peaks up to $1\,\mathit{Hz}$ off from the stimulation frequency as valid SSVEP responses because we always have at least $2\,\mathit{Hz}$ difference between one stimulation frequency and the another. This band could be restricted, as further analysis of my results has shown that neural responses are in general very accurate.
+The recognition ratio provides the ratio of the highest peak within $[f-1, f+1]$ to the highest peak in the rest of the spectrum. The neural response to a regularly blinking stimulation, called SSVEP, is characterized by a peak in the spectrum of the signal at the same frequency as the blinking frequency. Thus, if the recognition ratio is above 1, then the highest peak is within $1\,\mathit{Hz}$ of $f$, and the SSVEP can be considered detectable. 
+Otherwise, the SSVEP cannot be observed. 
+Please note that we decided to consider peaks up to $1\,\mathit{Hz}$ off from the stimulation frequency as valid SSVEP responses because we always have at least $2\,\mathit{Hz}$ difference between one stimulation frequency and the another. This band could be restricted, as further analysis of my results has shown that neural responses are in general very accurate.
 
 \subsection{Parameter: Stimulation frequency}
 Six frequencies were tested (9, 12, 15, 18, 21, and 24$Hz$). For each frequency condition, five trials were performed on three different subjects. The blinking light was set 1$m$ away from the subject. Figure \ref{fig:graph-frequences} confirms the decrease in the amplitude of the neural response as the frequency grows as already described by \cite{herrmann2001}; furthermore it shows that the detection fails beyond 15$Hz$. Therefore, we can conjecture that SSVEP activity can be measured with this headset, provided low frequencies are chosen. Based on these observations, we restricted the frequency band in the following two studies; the chosen interval: $[7\,\mathit{Hz}, 17\,\mathit{Hz}]$.
@@ -212,7 +221,7 @@ Figure \ref{fig:all_time_reconn} shows the recognition rate as function of time;
 
 \begin{figure}
 \center
-\includegraphics[width=0.5\textwidth]{figures/all-results-reconn.pdf}
+\includegraphics[width=0.7\textwidth]{figures/all-results-reconn.pdf}
 \caption{Frequency recognition rate per subject and per stimulation frequency, considering the different stimulation durations.}
 \label{fig:all-results-reconn}
 \end{figure}
@@ -220,7 +229,26 @@ Figure \ref{fig:all_time_reconn} shows the recognition rate as function of time;
 Based on the results, we can observe that the time required to recognize and select the robot is at least 4 seconds. Based on the algorithm the best result that we can get is after 3 seconds, this matches with the results achieved in literature. Although this signal processing chain does not require a training session as opposed to systems that use machine learning algorithms; this delay of 4$s$ is a clear drawback to this prediction system. Moreover, the stability of this set-up is remarkable: it shows that despite the numerous artifacts, it is possible to guarantee, on average, a recognition rate of 75\% at any time after the first $4\,s$. The small variation also suggests that the prediction system used, as it is, will not provide better results. 
 
 \section{Conclusions}
-This study systematically analyzes two state-of-the-art SSVEP-related EEG classification techniques for tackling the robot selection problem using the Emotiv EPOC; and proposes a new methodology for thinking about human-swarm interactions. The high recognition rate confirm that the SSVEP-based approach is well reliable. Furthermore, the methodology is extend-able; meaning, it is very simple to add other recognition systems based on different mechanisms (speech recognition, number, etc.) and obtain more robust setup by combining the advantages of both approaches. Such efficient combination of EEG and swarm-robotics could open new possibilities.\\
+This study systematically analyzes two state-of-the-art SSVEP-related EEG classification techniques and some of their key parameters for tackling the robot selection problem using the Emotiv EPOC, and proposes a new methodology for addressing human-swarm interactions. 
+In respect to the existing literature based on gesture or vice commands, this approach is more intuitive, being based only on the gaze of the user. 
+In respect to other potential gaze-based approaches, such as eye-tracking devices, the CCA-based SSVEP classifier does not need training nor calibration, still reaching performances that in some individuals can reach success rates well above 75\%.
+
+This is also the first study giving an estimation of the potential distance of robot detection using this technique.
+Despite the limited range observed in our experiments, that is less than 2$m$, this distance has to be considered in respect to the size of the robot and the type of visual stimuli.
+In this project, the stimuli comes from two LEDs placed in the body of a 10$cm$ large robot. 
+We can speculate that a larger and more visually salient robot could be selected at a much higher distance, making a real application possible.
+
+
+Another limitation comes from the number of available frequencies.
+Despite the possibility to classify a very high number of very close frequencies \cite{SSVEPfiability}, the number of possible detected robots stays finite, limiting the scalability of the approach. 
+However, this selection technique could be combined with other approaches, sur as detection of head orientation, allowing to pre-select part of the swarm and use this technique for a subset of the swarm.
+
+
+Finally, some factors that are uncontrollable in a real world applications, such as muscular artifacts or personal attitudes of the pilot, could impact negatively the performances of such a solution.
+Other factors, such as the relative surrounding brightness, the variable distance to the targets, and the blinking light interferences with other robots should be carefully considered to reach the best performance.
+
+
+To conclude we believe, despite the limiting factors highlighted by our work, that the very positive results show that an efficient combination of EEG and swarm-robotics could open new interesting possibilities in human-swarm interactions.\\
 
 %	Finally, while some factors that are uncontrollable in a real world application, such as muscular artifacts; the relative surrounding brightness, variable distance to the targets and blinking light interferences from other robots must still be controlled; 
 
