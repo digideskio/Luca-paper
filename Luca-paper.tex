@@ -214,7 +214,7 @@ Based on the results from the short studies, we designed an experiment to implem
 
 \begin{figure}
 \center
-\includegraphics[width=0.6\textwidth]{figures/schema-global2.pdf}
+\includegraphics[width=0.9\textwidth]{figures/schema-global2.pdf}
 \caption{Setup of the experiment, showing the configuration of the user with respect to the robots and the communication channels used for interaction. The details schematics of the computational unit: signal acquisition and processing chain is the same as shown in figure \ref{fig:thymioinstall}} \label{fig:experiment-set-up}
 \end{figure}
 
@@ -229,7 +229,7 @@ Figure \ref{fig:schema-openvibe-cca} shows the details of the processing chain. 
 \end{figure}
 
 \subsubsection{Results and discussions}
-Figure \ref{fig:all_time_reconn} shows the recognition rate as function of time; the data presented was averaged over all predictions made on all 10 subjects in all stimulations. It can be seen that the recognition rate starts randomly and increases gradually to plateau around 75\%. The similar increase in recognition reliability after 4$s$ can also be seen in figure \ref{fig:taux-reconn}; this graph shows the average recognition rate per frequency. We can observe that the lowest reliability is at 12$Hz$; while the highest is at 10$Hz$ with very little standard deviation. The variance between the subjects can be observed in more detail in figure \ref{fig:all-results-reconn}; these graphs show the average recognition rates per subject per frequency. The reliability of 10$Hz$ can be seen in different subjects but especially in subjects 5 and 7; where the recognition rate at 10$Hz$ is double compared to 12$Hz$. Lastly, this graph also shows the divergences between different people: subject 1 has a 98\% recognition rate at 8 Hz while subject 5 is around 40\% for the same frequency. This is a key characteristic of EEG that makes EEG analysis so delicate and must be carefully considered when developing new applications.
+Figure \ref{fig:all_time_reconn} shows the recognition rate as function of time; the data presented was averaged over all predictions made on all 10 subjects in all stimulations. It can be seen that the recognition rate starts randomly and increases gradually to plateau around 75\%. The similar increase in recognition reliability after 4$s$ can also be seen in figure \ref{fig:taux-reconn}; this graph shows the average recognition rate per frequency. We can observe that the lowest reliability is at 12$Hz$; while the highest is at 10$Hz$ with very little standard deviation. The variance between the subjects can be observed in more detail in figure \ref{fig:all-results-reconn}; these graphs show the average recognition rates per subject per frequency. The predominant reliability of 10$Hz$ can be seen in different subjects but especially in subjects 5 and 7; where the recognition rate at 10$Hz$ is double compared to 12$Hz$. Lastly, this graph also shows the divergences between different people: subject 1 has a 98\% recognition rate at 8 Hz while subject 5 is around 40\% for the same frequency. This is a key characteristic of EEG that makes EEG analysis so delicate and must be carefully considered when developing new applications.
 
 \begin{figure}
 \center
@@ -251,22 +251,27 @@ Figure \ref{fig:all_time_reconn} shows the recognition rate as function of time;
 \label{fig:all-results-reconn}
 \end{figure}
 
-Based on the results, we can observe that the time required to recognize and select the robot is at least 4 seconds. Based on the algorithm the best result that we can get is after 3 seconds, this matches with the results achieved in literature. Although this signal processing chain does not require a training session as opposed to systems that use machine learning algorithms; this delay of 4$s$ is a clear drawback to this prediction system. Moreover, the stability of this set-up is remarkable: it shows that despite the numerous artifacts, it is possible to guarantee, on average, a recognition rate of 75\% at any time after the first $4\,s$. The small variation also suggests that the prediction system used, as it is, will not provide better results. 
+Based on the results, we can observe that the time required to recognize and select the robot in a reliable way is 4 seconds. 
+Based on the algorithm, the first result of the stimulation is issued by the pipeline after 3 seconds. 
+An additional second is required to reach the best performances, which matches with the results achieved in literature ADD REFERENCE. 
+Although this signal processing chain does not require a training session as opposed to systems that use machine learning algorithms, this delay of $4\,s$ is a clear drawback of this prediction system. 
+However, the stability of this set-up is remarkable: it shows that despite the numerous artifacts, it is possible to guarantee, on average, a recognition rate of 75\% at any time after the first $4\,s$. 
+%The small variation also suggests that the prediction system used, as it is, will not provide better results. 
 
 \section{Conclusions}
-This study systematically analyzes two state-of-the-art SSVEP-related EEG classification techniques and some of their key parameters for tackling the robot selection problem using the Emotiv EPOC, and proposes a new methodology for addressing human-swarm interactions. 
+This study systematically analyzes two state-of-the-art SSVEP-related EEG classification techniques and some of their key parameters for tackling the robot selection problem using the Emotiv EPOC and the Thymio robot, and proposes a new methodology for addressing human-swarm interactions. 
 In respect to the existing literature based on gesture or vice commands, this approach is more intuitive, being based only on the gaze of the user. 
 In respect to other potential gaze-based approaches, such as eye-tracking devices, the CCA-based SSVEP classifier does not need training nor calibration, still reaching performances that in some individuals can reach success rates well above 75\%.
 
 This is also the first study giving an estimation of the potential distance of robot detection using this technique.
-Despite the limited range observed in our experiments, that is less than 2$m$, this distance has to be considered in respect to the size of the robot and the type of visual stimuli.
+Despite the limited range observed in our experiments, less than 2$m$, this distance has to be considered in respect to the size of the robot and the type of visual stimuli.
 In this project, the stimuli comes from two LEDs placed in the body of a 10$cm$ large robot. 
 We can speculate that a larger and more visually salient robot could be selected at a much higher distance, making a real application possible.
 
 
 Another limitation comes from the number of available frequencies.
-Despite the possibility to classify a very high number of very close frequencies \cite{SSVEPfiability}, the number of possible detected robots stays finite, limiting the scalability of the approach. 
-However, this selection technique could be combined with other approaches, sur as detection of head orientation, allowing to pre-select part of the swarm and use this technique for a subset of the swarm.
+Despite the 8$Hz$ to 12$Hz$ frequency range can potentially allow to classify 20 different frequencies~\cite{SSVEPfiability}, the number of possible detected robots stays finite, limiting the scalability of the approach. 
+However, this selection technique could be combined with other approaches, sur as detection of head orientation, allowing to pre-select part of the swarm and use the EEG-based technique for a subset of the swarm.
 
 
 Finally, some factors that are uncontrollable in a real world applications, such as muscular artifacts or personal attitudes of the pilot, could impact negatively the performances of such a solution.
