@@ -27,6 +27,7 @@
 \usepackage[bottom]{footmisc} 			% places footnotes at page bottom
 \usepackage{amsmath,amssymb,epsfig}
 \usepackage{epstopdf}
+\usepackage{multirow}
 \bibliographystyle{spmpsci}
 
 % See the list of further useful packages in the Reference Guide
@@ -324,6 +325,83 @@ Finally, some factors that are uncontrollable in a real world applications, such
 Other factors such as the relative surrounding brightness, the variable distance to the targets, and the blinking light interferences with other robots should be carefully considered to reach the best performance. \\
 \\
 To conclude we believe, despite the limiting factors highlighted by our work, that the very positive results show that an efficient combination of EEG and swarm-robotics could open new interesting possibilities in human-swarm interactions.\\
+
+\begin{table}\begin{center}
+    \begin{tabular}{ c | r | r | r }
+        & 0\,$s$ & 2\,$s$ & 4\,$s$ \\ \hline
+
+         8\,$Hz$ & 69.8 $\pm$ 18.8\% & 72.8 $\pm$ 20.0\% & 75.1 $\pm$ 19.8\% \\
+        10\,$Hz$ & 73.2 $\pm$  5.0\% & 78.9 $\pm$  5.9\% & 81.9 $\pm$  8.2\% \\
+        12\,$Hz$ & 59.2 $\pm$ 13.6\% & 63.9 $\pm$ 14.2\% & 66.0 $\pm$ 15.1\% \\
+    \end{tabular}
+    \caption{Table to fig. \ref{fig:taux-reconn}}
+\end{center}\end{table}
+
+\begin{table}\begin{center}
+    \begin{tabular}{ r | c | c | c | c }
+        \multicolumn{2}{c|}{} & 0\,$s$ & 2\,$s$ & 4\,$s$ \\ \hline
+
+        \multirow{3}{*}{subject1} &  8\,$Hz$ & 93.3\% & 96.2\% & 98.2\% \\
+                                  & 10\,$Hz$ & 73.3\% & 77.2\% & 77.5\% \\
+                                  & 12\,$Hz$ & 76.3\% & 83.1\% & 83.9\% \\
+        
+        \hline
+
+        \multirow{3}{*}{subject2} &  8\,$Hz$ & 73.3\% & 79.2\% & 83.6\% \\
+                                  & 10\,$Hz$ & 70.0\% & 73.5\% & 77.7\% \\
+                                  & 12\,$Hz$ & 58.7\% & 64.6\% & 69.5\% \\
+        
+        \hline
+
+        \multirow{3}{*}{subject3} &  8\,$Hz$ & 79.7\% & 84.2\% & 86.8\% \\
+                                  & 10\,$Hz$ & 77.5\% & 88.5\% & 96.2\% \\
+                                  & 12\,$Hz$ & 78.3\% & 80.0\% & 78.6\% \\
+        
+        \hline
+
+        \multirow{3}{*}{subject4} &  8\,$Hz$ & 88.6\% & 93.1\% & 94.5\% \\
+                                  & 10\,$Hz$ & 80.0\% & 84.9\% & 88.6\% \\
+                                  & 12\,$Hz$ & 60.3\% & 64.2\% & 72.3\% \\
+        
+        \hline
+
+        \multirow{3}{*}{subject5} &  8\,$Hz$ & 53.9\% & 52.5\% & 54.8\% \\
+                                  & 10\,$Hz$ & 74.6\% & 79.8\% & 80.8\% \\
+                                  & 12\,$Hz$ & 36.6\% & 38.5\% & 34.0\% \\
+
+        \hline
+
+        \multirow{3}{*}{subject6} &  8\,$Hz$ & 72.4\% & 75.8\% & 75.0\% \\
+                                  & 10\,$Hz$ & 63.7\% & 68.4\% & 67.7\% \\
+                                  & 12\,$Hz$ & 48.9\% & 52.3\% & 58.2\% \\
+
+        \hline
+
+        \multirow{3}{*}{subject7} &  8\,$Hz$ & 36.3\% & 40.0\% & 41.8\% \\
+                                  & 10\,$Hz$ & 75.7\% & 80.8\% & 83.2\% \\
+                                  & 12\,$Hz$ & 45.2\% & 50.8\% & 50.9\% \\
+
+        \hline
+
+        \multirow{3}{*}{subject8} &  8\,$Hz$ & 89.0\% & 93.8\% & 95.9\% \\
+                                  & 10\,$Hz$ & 75.6\% & 82.4\% & 84.8\% \\
+                                  & 12\,$Hz$ & 53.3\% & 59.2\% & 62.3\% \\
+
+        \hline
+
+        \multirow{3}{*}{subject9} &  8\,$Hz$ & 57.8\% & 59.0\% & 62.9\% \\
+                                  & 10\,$Hz$ & 66.7\% & 73.4\% & 74.0\% \\
+                                  & 12\,$Hz$ & 71.3\% & 77.1\% & 73.7\% \\
+
+        \hline
+
+        \multirow{3}{*}{subject10} &  8\,$Hz$ & 53.7\% & 54.6\% & 57.3\% \\
+                                  & 10\,$Hz$ & 74.6\% & 80.0\% & 88.8\% \\
+                                  & 12\,$Hz$ & 63.0\% & 69.2\% & 76.8\% \\
+
+    \end{tabular}
+    \caption{Table to fig. \ref{fig:all-results-reconn}}
+\end{center}\end{table}
 
 % Finally, while some factors that are uncontrollable in a real world application, such as muscular artifacts; the relative surrounding brightness, variable distance to the targets and blinking light interferences from other robots must still be controlled; 
 
