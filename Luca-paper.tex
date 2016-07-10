@@ -340,8 +340,8 @@ An additional second is required to reach the best performances, which matches w
 Although this signal processing chain does not require a training session as opposed to systems that use machine learning algorithms, this delay of $4\,s$ is a clear drawback of this prediction system. 
 However, the stability of this set-up is remarkable: it shows that despite the numerous artifacts, it is possible to guarantee, on average, a recognition rate of 75\% at any time after the first $4\,s$. \\
 \\
-We processed the same data using a short-time FFT (STFFT), checking if the frequency extraction could be done in a shorter delay. 
-XXXXX explain here some parameters of the STFFT.
+We processed the same data using a short-time FFT (STFT), checking if the frequency extraction could be done in a shorter delay. 
+XXXXX explain here some parameters of the STFT.
 The results are included in figure \ref{fig:all-results-reconn}. Short-time FFT has similar performances then CCA in the first seconds of processing, but does not improve the performances like the CCA for longer delays, which is coherent with the processing method. \\
 \\
 We finally did some preliminary experiments combining the use of EEG signals as illustrated above with some processing of the gyroscope mounted on the EEG headset. In our tests we used the lateral movement of the head to trigger the recognition. This allows to both start a recognition when the user moves the head toward a new target, or can be used to restart the process after a wrong recognition, by shacking shortly the head laterally. A video illustrating the approach can be accessed at \verb"www.bit.ly/ssvep-bot". These preliminary tests improved significantly the whole interaction and show the interest of combining the EEG-based implicit communication with other human-robot interaction methods.
@@ -350,7 +350,7 @@ We finally did some preliminary experiments combining the use of EEG signals as 
 \begin{figure}
 \center
 \includegraphics[width=0.7\textwidth]{figures/all_time_reconn.pdf}
-\caption{Frequency recognition rate versus time during the 15$s$ of stimulation, for two processing methods: canonical correlation analysis (CCA) and short-time FFT (STFFT). These numbers are an average over 10 subjects considering the 5 trials of $15\,s$ each and the stimulation frequencies (8, 10 and 12 $Hz$).} \label{fig:all_time_reconn}
+\caption{Frequency recognition rate versus time during the 15$s$ of stimulation, for two processing methods: canonical correlation analysis (CCA) and short-time FFT (STFT). These numbers are an average over 10 subjects considering the 5 trials of $15\,s$ each and the stimulation frequencies (8, 10 and 12 $Hz$).} \label{fig:all_time_reconn}
 \end{figure}
 
 \begin{figure}
