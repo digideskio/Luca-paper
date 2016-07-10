@@ -161,20 +161,29 @@ For the acquisition of EEG signals, we used the EMOTIV EPOC EEG headset \cite{st
 \caption{Top view of the location of the electrodes of the EMOTIV EPOC EEG headset on the skull (forward looking direction toward the top of the image), with their international code labeling.} \label{fig:electrodes}
 \end{figure}
 \\
-As robot for our experiments we used Thymio II; this affordable-programmable robot features differential drive system, infrared (IR) remote control receiver and LEDs to change body color \cite{Riedo-et-al-2013}. Its small size ($11 \times 11 \times 5\,\mathit{cm}$) and affordable price (approximately 130\$) make it well suited for multi-robot experiments. 
+As robot for our experiments we used Thymio II; this programmable robot features differential drive system, infrared (IR) remote control receiver and LEDs to change body color \cite{Riedo-et-al-2013}. Its small size ($11 \times 11 \times 5\,\mathit{cm}$) and affordable price (approximately 130\$) make it well suited for multi-robot experiments. 
 The communication between the computer and the robot was supported by an infrared emitter dongle controlled by USB. 
 In this configuration, the computer plays just the role of the processing and communication unit of the operator, establishing a local communication with the robots that are in the field of view of the user.\\
 \\
-Given our human-swarm interaction problem of selecting a particular robot from a group of robots, the initial task was to design or select an algorithm. In our study we decided to test two well-known algorithms from literature: linear discriminant analysis (LDA) \cite{openvibeSSVEP} and Lin's canonical correlation analysis (CCA) separator \cite{Lin2014}. The first approach was chosen because it is the most common processing method applied in human-robot interaction based on SSVEP (see table IV in\cite{Bi2013}), despite the required training phase. It is used as a reference method in this paper. The second was chosen because of its good performances classifying SSVEP signal obtained with the same headset we used. The optimization of parameters was performed only on this second more promising algorithm.
-In both cases, all training and test sessions were performed in a setup which included an operator and a set of real robots.\\
+% PAPA: C'est un peu redondant ce passage. C'est grave ou pas? Je n'est pas trouve comment resoudre cette redondance sans changer toute la structure du texte
+Given our human-swarm interaction problem of selecting a particular robot from a group of robots, the initial task was to design or select an algorithm. In our study we decided to test three well-known algorithms from literature: linear discriminant analysis (LDA) \cite{openvibeSSVEP}, Lin's canonical correlation analysis (CCA) separator \cite{Lin2014}
+% PAPA: CITATION?
+and a short time Fourier transform CITATION. The first approach was chosen because it is the most common processing method applied in human-robot interaction based on SSVEP (see table IV in\cite{Bi2013}), despite the required training phase.
+In a second setup, the CCA was chosen because of its good performances classifying SSVEP signal obtained with the same headset we used. The optimization of parameters was performed only on this second more promising algorithm.
+Lastly, on the same data sets as the CCA, we computed offline the recognition rates of a standard STFT processing chain for reference purposes.
+In both experiment setups, all training and test sessions were performed in a setup which included an operator and a set of real robots.\\
 
 \section{First study: Robot selection using LDA classifier}
 \label{sec:ML_approach}
 %This section provides details about the experimental setup and the data-collection protocol used for collecting data to test on the LDA-based algorithm \cite{openvibeSSVEP}.\\
 
 \subsection{Experimental setup and data collection}
-Figure \ref{fig:thymioinstall} summarizes the experimental setup. The participants were placed in front of three robots, at a distance of 1.2$m$, in a darkened room. The three robots were programmed to blink in red at frequencies 12, 15 and 20$Hz$. These frequencies were chosen based on the literature in the field of screen-based stimulation~\cite{Zhu2010}. Indeed, the frequency of 10Hz presents the highest stimuli responses, followed by 16–18Hz, but BCI interfaces have been built around frequencies spanning from 4.8$Hz$ up to 43$Hz$.\\
+Figure \ref{fig:thymioinstall} summarizes the experimental setup. The participants were placed in front of three robots, at a distance of 1.2$m$, in a darkened room. The three robots were programmed to blink in red at frequencies 12, 15 and 20$Hz$. These frequencies were chosen based on the literature in the field of screen-based stimulation~\cite{Zhu2010}.
+% PAPA: the indeed makes no sense... je comprends pas ce que ca veut dire
+% je pense qu'il faut recrire toute la phrase, mais je sais pas exactement comment
+Indeed, the frequency of 10Hz presents the highest stimuli responses, followed by 16 -- 18Hz, but BCI interfaces have been built around frequencies spanning from 4.8$Hz$ up to 43$Hz$.\\
 \\
+% PAPA: attends attends attends: "could generate excellent results"?!?
 We conducted the study with 2 subjects; the subjects had normal or corrected-to-normal vision and no history of major head injury. Both had previous experience with EEG experiments and could generate excellent results. This hypothesis was confirmed in the second study presented in this article, where one of the two subjects is referred as \textit{Subject1} and achieved the best recognition scores. \\
 \\
 We ran 2 experiments with each subject. Each experiment was composed of a training and a test session. During the training session, the participants were instructed to look at an indicated target robot. One second after the instruction, all three targets began to flicker for 7$s$. During the stimulus, the subjects were asked to look at the blinking light; moreover they were requested to blink as little as possible to limit EEG artifacts. A break of 4$s$ was then introduced to avoid tiring the subject. This process was repeated 8 times for each target frequency plus a neutral non-blinking condition. The training session lasted around 6.5 minutes. We then moved to the test session, with identical conditions.\\
@@ -186,7 +195,7 @@ The Thymio robots LED flashing program was scripted in ASEBAStudio. The first se
 \begin{figure}
 \center
 \includegraphics[width=\textwidth]{figures/schema-global.pdf}
-\caption{Configuration of the experiment: The left illustrates the spatial arrangement of the experiment; while the right shows the summary of the signal acquisition and processing chain.} \label{fig:thymioinstall}
+\caption{Configuration of the experiment: the left illustrates the spatial arrangement of the experiment; while the right shows the summary of the signal acquisition and processing chain.} \label{fig:thymioinstall}
 \end{figure}
 
 \begin{figure}
@@ -198,14 +207,14 @@ The Thymio robots LED flashing program was scripted in ASEBAStudio. The first se
 \subsection{Data analysis}
 As illustrated in Figure~\ref{fig:LDA}, the 14-channel EEG data from the Emotiv EPOC is first filtered to focus on 12$Hz$, 15$Hz$ and 20$Hz$ using three band pass filters of interval ranges: [11.75$Hz$, 12.25$Hz$], [14.75$Hz$, 15.25$Hz$] and [19.75$Hz$, 20.25$Hz$]. 
 If the signals are not sufficiently clean, a first step before filtering should be to apply an artifact removal algorithms such as the Artifact Subspace Reconstruction (ASR) algorithm that can remove short-time high-amplitude artifacts. We decided, for this first study, to stick to the original processing chain presented in~\cite{openvibeSSVEP}.
-Once filtered, these signals were used to compute the weight coefficients for the spatial averaging of the signal, using the common spatial pattern (CSP) algorithm. These weights were computed separately for each stimulation frequency: for each given frequency $f$, the CSP algorithm computes the weights $w$ such that $\frac{\textrm{Var}(w X_{f,in})}{\textrm{Var}(w X_{f,out})}$ is maximized, where $X_{in}$ is the signal during stimulation periods with frequency $f$ and $X_{out}$ the signal during the other stimulation periods. 
+Once filtered, these signals were used to compute the weight coefficients for the spatial averaging of the signal, using the common spatial pattern (CSP) algorithm. These weights were computed separately for each stimulation frequency: for each given frequency $f$, the CSP algorithm computes the weights $w$ such that $\frac{\textrm{Var}(w X_{f,in})}{\textrm{Var}(w X_{f,out})}$ is maximized, where $X_{f,in}$ is the signal during stimulation periods with frequency $f$ and $X_{f,out}$ the signal during the other stimulation periods. 
 %For each frequency, the EEG signals were then separated into two groups of 14 weighted channels using the CSP filter.
 The different weighted averages were then squared, divided into epochs, averaged and followed by a natural logarithm of the value. These values were passed as vectors to train three LDA classifiers. 
 Each of these training vectors was labeled with the stimulation frequency; each classifier was trained for one of the three stimulation frequency in a one-vs-all strategy. \\
 \\
-The training of the LDA classifier aims at finding the best separator of two partitions $A_1$ and $A_2$ within an ensemble of $N$ vectors $A = \left\{v_1, v_2, \hdots, v_N\right\}$, where $v_1, v_2, \hdots, v_N \in \mathbb R^n$. In our case the two partitions represent the samples of the responses to one frequency on one side, and all the other samples on the other side.
-The LDA algorithm looks for a $w\in\mathbb R^n$ and $\theta\in\mathbb R$ such as the statement $w^\top x < \theta$ builds the best possible separation between the elements of $A_1$ and those of $A_2$. The ideal solution would be that $w^\top x < \theta \Leftrightarrow x\in A_1$ and $w^\top x \geq \theta \Leftrightarrow x\in A_2$.
-The LDA algorithm is based on on the maximization of the function $J(w)$, which is the ratio of total sample variance to the sum of variances within separate classes: 
+The training of the LDA classifier aims at finding the best separator given a partition of $N$ vectors $A = \left\{v_1, v_2, \hdots, v_N\right\} \subset \mathbb R^n$ in two sets $A_1$ and $A_2$ . In our case the two partitions represent the samples of the responses to one frequency on one side, and all the other samples on the other side.
+The LDA algorithm looks for a $w\in\mathbb R^n$ and $\theta\in\mathbb R$ such that the statement $w^\top x < \theta$ builds the best possible separation between the elements of $A_1$ and those of $A_2$. The ideal solution would be such that $w^\top x < \theta \Leftrightarrow x\in A_1$ and $w^\top x \geq \theta \Leftrightarrow x\in A_2$.
+The LDA algorithm is based on the maximization of the function $J(w)$, which is the ratio of total sample variance to the sum of variances within separate classes: 
 \[
 J(w) = \frac{w^\top S_Bw}{w^\top S_Ww}
 \]
@@ -218,11 +227,15 @@ with $\mu_i$ being the variance within $A_i$. The maximum of this function is:
 \[
 w = S_W^{-1}(\mu_1-\mu_2)
 \]
-Once these separators are defined, they are used for recognition. A final voter decides which of the frequency is better recognised.
+Once these separators are defined, they are used for recognition. A final voter selects the frequency which is best recognised.
 For more details of the processing chain, please refer to \cite{openvibeSSVEP}.
 
 \subsection{Results and discussions}
-For each of the four sessions we carefully studied the CSP filter output. In our experiments we were analyzing SSVEP signals, therefore, we expected to see large weighting values in regions: P7, O1, O2 and P8, corresponding to the occipital lobe, because these provide information about the visual activity in the brain. However, we found unpredictable and inconsistent distribution of weights in this region of the brain. In sessions 1 and 2, some importance seemed to be given to this part of the brain which would demonstrate some success; however the finding does not hold in sessions 3 and 4. In addition, the CSP algorithm sometimes selected AF4 and F3 electrodes which are frontal electrodes known for the low quality of their signal and their powerful muscle artifacts. Figure \ref{fig:CSP_20} (values are given in Table~\ref{table:CSP_20}) illustrates an example where the CSP filter has attributed low importance to EEG channels in the occipital region known to be neurologically important in the SSVEP process while high importance has been given to noisy and less relevant locations. This malfunctioning of the training process is probably due to the lower quality of the signals acquired by the EEG device. As a result, the overall algorithm generated very poor results with a recognition rate close to random.\\
+For each of the four sessions we carefully studied the CSP filter output.
+In our experiments we were analyzing SSVEP signals, therefore, we expected to see large weighting values at the electrodes P7, O1, O2 and P8 (for the international naming convention refer to Figure \ref{fig:electrodes}), which correspond to the occipital lobe, because the visual cortex and the primary SSVEP neuronal response is located there. However, we found unpredictable and inconsistent distribution of weights in that region of the brain.
+In sessions 1 and 2, some importance seemed to be given to the occipital lobe of the brain which would demonstrate some success; however the finding does not hold in sessions 3 and 4.
+In addition, the CSP algorithm sometimes selected AF4 and F3 electrodes which are frontal electrodes known for the low quality of their signal and their powerful muscle artifacts.
+Figure \ref{fig:CSP_20} (values are given in Table~\ref{table:CSP_20}) illustrates an example where the CSP filter has attributed low importance to EEG channels in the occipital region known to be neurologically important in the SSVEP process while high importance has been given to noisy and less relevant locations. This malfunctioning of the training process is probably due to the lower quality of the signals acquired by the EEG device. As a result, the overall algorithm generated very poor results with a recognition rate close to random.\\
 \\
 \begin{figure}
 \center
@@ -258,10 +271,11 @@ AF4&-0.175&0.082&0.007&0.116&0.216&-0.165&-0.073&0.243\\
 \end{tabular}\label{table:CSP_20}
 \end{table} 
 
-Based on our experience with the LDA-based classifier, we realized that our setup with the Emotiv device and real robots had very different properties than the experiments found in the literature, which mostly focused on participants equipped with medical-grade devices and looking to a screen. This results in a set of parameters that can be very different than those found in the literature. 
-The choice of effective frequency range, the LED color and the range of effective distance between the user and the robot can play a crucial role. 
-For instance, the Thymio's LEDs have a refreshing rate of 243.75$Hz$, whereas most screen's refreshing rate is around 60$Hz$. Therefore at low frequencies, one must pay attention to choose divisors of the refreshing rate as the blinking frequency to avoid blinking irregularities perceivable by the human eye. This greatly restricts the choice of the effective frequency range. As the refreshing rate grows this factor becomes negligible and the frequencies can be chosen more conveniently. Furthermore, compared to most SSVEP scenarios where researchers either used screens or plain white lights as visual stimulus this set-up uses robots and RGB LEDs. Most importantly, the robot-based setup raises the question of mobile targets: How does the variation in distance between the user and the targets impact the EEG signal? Answers to these question are crucial and very specific to our situation of human-swarm interaction.
-Finally, the need for a training session in this approach is a very heavy constrain. Therefore we decided to not optimize the parameters of this experiment, moving toward a new processing method that does not require training. We kept the description of our LDA results in this paper to better explain the process leading to the choices of the second study we performed.
+Based on our experience with the LDA-based classifier, we realized that our setup with the Emotiv device and real robots had very different properties than the experiments found in the literature, which mostly focused on participants equipped with medical-grade devices and looking at a screen.
+As a result, our setup had a very different set of parameters than other setups in the literature. 
+Indeed, the choice of the frequency range, the LED color and the distance between the user and the robot play a crucial role. 
+For instance, the Thymio's LEDs have a refreshing rate of 243.75$Hz$, whereas most screen's refreshing rate is around 60$Hz$. Therefore, while the choice of the blinking frequencies on a screen is very limited (one must pay attention to choose divisors of the refreshing rate as the blinking frequency to avoid blinking irregularities perceivable by the human eye), this restriction does not apply to our scenario, as higher refreshing rates render this factor negligible. Furthermore, compared to most SSVEP scenarios where researchers either used screens or plain white lights as visual stimulus this setup uses robots and RGB LEDs, which offers much more flexibility on the choice of the blinking color. Lastly, and perhaps most importantly, our robot-based setup raises the question of mobile targets: how does the variation in distance between the user and the targets impact the EEG signal? Answers to all these question are crucial and very specific to our situation of human-swarm interaction.
+Finally, the need for a training session in this approach is a very heavy constrain. Therefore we decided to not optimize the parameters of this experiment, and to move towards a new processing method that does not require training. We kept the description of our LDA results in this paper to better explain the process leading to the choices of the second study we performed.
 
 \section{Second study: Robot selection using CCA-based SSVEP classifier}
 \label{sec:CCA_approach}
@@ -370,7 +384,7 @@ Based on the results, we can observe that the time required to recognize and sel
 Based on the algorithm, the first result of the stimulation is issued by the pipeline after 3 seconds. 
 An additional second is required to reach the best performances, which matches with the results achieved in literature \cite{car,SSVEPfiability,jian2014improving,paper4}. 
 Although this signal processing chain does not require a training session as opposed to systems that use machine learning algorithms, this delay of $4\,s$ is a clear drawback of this prediction system. 
-However, the stability of this set-up is remarkable: it shows that despite the numerous artifacts, it is possible to guarantee, on average, a recognition rate of 75\% at any time after the first $4\,s$. \\
+However, the stability of this setup is remarkable: it shows that despite the numerous artifacts, it is possible to guarantee, on average, a recognition rate of 75\% at any time after the first $4\,s$. \\
 \\
 We processed the same data using a short-time Fourier transform (STFT), checking if the frequency extraction could be done in a shorter delay. 
 In the first 5 seconds we therefore applied STFT on 0.5$s$ frames for the first second, on 1$s$ frames for the second second, on 2$s$ frames for the third and fourth second, and on 4$s$ frames for the fifth and sixth second. The results are illustrated in figure \ref{fig:all-results-reconn}. STFT has similar performances then CCA in the first seconds of processing, but does not improve the performances as much as the CCA for longer delays.\\
@@ -417,7 +431,7 @@ In respect to the existing literature based on explicit gesture or voice-based i
 In respect to other potential gaze-based approaches, such as eye-tracking devices, the CCA-based SSVEP classifier does not need training nor calibration while still obtaining performances that can reach success rates well above 75\% for some individuals.\\
 \\
 This is also the first study giving an estimation of the potential distance of robot detection using this technique.
-Despite the limited range observed in our experiments, less than 2$m$, this distance has to be considered in respect to the size of the robot and the type of visual stimuli. We consider that the set-up used in this experiment corresponds to a robot with 60$cm$ in diameter placed up to 10$m$ away and having a blinking LED of 7.5$W$. 
+Despite the limited range observed in our experiments, less than 2$m$, this distance has to be considered in respect to the size of the robot and the type of visual stimuli. We consider that the setup used in this experiment corresponds to a robot with 60$cm$ in diameter placed up to 10$m$ away and having a blinking LED of 7.5$W$. 
 We can speculate that these conditions are realistic for a concrete application.\\
 \\
 Another limitation comes from the number of available frequencies.
