@@ -321,7 +321,24 @@ Based on the results from the short studies, we designed an experiment to implem
 \end{figure}
 
 \subsubsection{Data analysis processing chain}
-Figure \ref{fig:schema-openvibe-cca} shows the details of the processing chain. The predominant SSVEP EEG signal from the occipital region of the brain is acquired and stored in an 8 second buffer. At each iteration the signal length parameter of the trimming function is changed. Initially, this parameter is set to 2$s$, meaning that only the last 2$s$ of the buffered signal is considered. At each iteration, the signal length is incremented by 0.25$s$. Every time, this particular signal is correlated using CCA to 3 different simulated signals that model an idealized reaction to the blinking stimulations; these signals are composed of sine, cosine and their first harmonic at the same frequency as the associated stimulus frequency. Later, a voting scheme selects the frequency with the highest correlation as the new predicted stimulation frequency. For the loop to end successfully, four consecutive predictions must coincide. If the signal length reaches 8$s$, the loop is stopped and no prediction is made.
+Figure \ref{fig:schema-openvibe-cca} shows the details of the processing chain.
+The objective of the processing chain is to classify the EEG signal from the occipital region of the brain using SSVEP into one of the following three categories: 8$Hz$, 10$Hz$ and 12$Hz$.
+The processing chain consists of a loop that is repeated until a successful classification can be made.
+After each unsuccessful iteration, a signal length parameter is increased. Initially this parameter is set to 2$s$.
+It represents the length of the signal that is used during the classification attempt.
+In the event of classification failure, a new attempt is made with an increased signal length.
+This increased length boosts the chances of success of the new classification attempt by reducing the impact of the noise present in the signal
+but at the same time introduces longer recognition delays as changing states don't affect the predictions as quickly as before.
+If the signal length parameter reaches 8$s$, the classification is interrupted and no prediction is made.
+Each loop iteration ends with a classification attempt.
+A classification is considered successful only if 4 consecutive classification attempts have made the same prediction. This measure significantly reduces the false positives.
+
+During each iteration, the classification attempt is made using CCA: the measured EEG signal is correlated with 3 other signals that are precomputed and then the signal frequency with the highest correlation to the measured signal is chosen.
+Each of these precomputed signals models an idealized reaction to one of the 3 different blinking stimulations (blinking frequency of 8$Hz$, 10$Hz$ and 12$Hz$).
+For a given stimulation frequency, the model is composed of the sine, cosine and the first harmonic of that frequency.
+% TODO: find CITATIONS
+Indeed, SSVEP signals are characterized with amplitude peaks in the frequency spectrum at the respective blinking stimulation CITATION.
+Using linear combinations of these multidimensional signals, phase and amplitude, as well as superposition of harmonics present in SSVEP as observed by CITATION, can be modulated arbitrarily to model the SSVEP response of the brain and maximize the correlation with the measured signal.
 
 \begin{figure}
 \center
