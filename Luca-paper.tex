@@ -117,7 +117,7 @@ For the EEG signal analysis several processing chains have been suggested; for d
 % PAPA: Citation pour STFT?
 We then also compared the performance of the CCA to a standard short time Fourier transform (STFT) CITATION algorithm for reference.
 % PAPA: verifie si ca te va le bout qui suit
-The first was chosen as proof-of-concept because of its open-source implementation and the achieved results~\cite{openvibeSSVEP}. In a second experiment, we developped a more suited processing chain, based on the promising results of~\cite{Lin2014} using the same equipment as we used in our study.
+The first was chosen as proof-of-concept because of its open-source implementation and the achieved results~\cite{openvibeSSVEP}. In a second experiment, we developed a more suited processing chain, based on the promising results of~\cite{Lin2014} using the same equipment as we used in our study.
 Furthermore, we systematically analyzed various unexplored parameters: the distance between the user and the robot, the color of the visual stimuli, and the frequency of the blinking light; these parameters directly impact the efficiency of the overall system. 
 Finally, based on the studies, we propose an interaction methodology and critically analyze it based on its performance on 10 subjects.\\
 \\
@@ -128,14 +128,11 @@ They allowed fine-tuning of some of the key parameters of the experiment: the co
 
 \section{State of the art}
 \label{sec:soa}
-% PAPA: il faut serieusement un truc aussi general et qui va dans tous les sens??
 Target selection based BCI devices typically analyze SSVEP or a combination of P300 and SSVEP signals. A literature survey shows several successful implementations of target selection based BCI applications. For instance, a 2D cursor system has been developed to control a BCI-based keyboard \cite{yin2015hybrid}. SSVEP-based target selection procedures have also been used to control external electronic devices; the authors claimed that their algorithm could successfully detect 45 different target frequencies using green blinking LED lights \cite{SSVEPfiability}. In the domain of rehabilitation, SSVEP and P300 signals have been used to control actual wheel-chairs \cite{paper4}, quantify the awareness capabilities in patients with consciousness disorder \cite{paper8}, implement brain controlled spelling devices \cite{paper2}, and select destination under real driving conditions \cite{car}. In the gaming world, SSVEP-based target selection has been utilized to control a virtual avatar \cite{paper_5} and also has been used to play checkers among two people \cite{paper6}. The EEG devices used in the these studies are extremely expensive and not portable.\\
 \\
 %Fixed!
 We reviewed the literature for an affordable, portable, and SSVEP capable BCI; we found that Emotiv EPOC has been effectively used under similar application settings \cite{jian2014improving,van2012designing}. It has grown in popularity among researchers seeking to create simple and affordable setups. Compared to traditional systems which require gel on the scalp of the user as well as cumbersome wiring, Emotiv uses saline water and a radio connection. However, ease of use and affordability come at the price of poorer signal quality.
-% PAPA: je comprends pas: "a study" ca veut dire qu'on l'a fait nous ou est-ce qu'il manque une citation?
 Nonetheless, a study showed that the EPOC data can be used to satisfactorily test most of the SSVEP-related algorithms used in literature with reasonable results; it is also possible to use the device in real-time applications \cite{hvaring2014comparison}.
-% PAPA: est-ce qu'il faut mettre ca?
 Finally, a comparative analysis of SSVEP data acquired from EPOC and medical grade EEG found that the data is reliable \cite{liu2012implementation}, although researchers advised not to use Emotiv for medically serious cases \cite{duvinage2013performance}.\\
 \\
 %Fixed!
@@ -167,7 +164,6 @@ As robot for our experiments we used Thymio II; this programmable robot features
 The communication between the computer and the robot was supported by an infrared emitter dongle controlled by USB. 
 In this configuration, the computer plays just the role of the processing and communication unit of the operator, establishing a local communication with the robots that are in the field of view of the user.\\
 \\
-% PAPA: C'est un peu redondant ce passage. C'est grave ou pas? Je n'est pas trouve comment resoudre cette redondance sans changer toute la structure du texte
 Given our human-swarm interaction problem of selecting a particular robot from a group of robots, the initial task was to design or select an algorithm. In our study we decided to test three well-known algorithms from literature: linear discriminant analysis (LDA) \cite{openvibeSSVEP}, Lin's canonical correlation analysis (CCA) separator \cite{Lin2014}
 and a short time Fourier transform. The first approach was chosen because it is the most common processing method applied in human-robot interaction based on SSVEP (see table IV in\cite{Bi2013}), despite the required training phase.
 In a second setup, the CCA was chosen because of its good performances classifying SSVEP signal obtained with the same headset we used. The optimization of parameters was performed only on this second more promising algorithm.
