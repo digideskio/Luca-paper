@@ -44,10 +44,10 @@
 % Use the package "url.sty" to avoid problems with special characters used in your e-mail or web address
 \begin{document}
 %\title{Gaze-based control of robot-swarm using electroencephalography} % Fix!
-\title{Electroencephalography as a proximal human interaction method with a group of robots}
+\title{EEG-based proximal interaction between humans and groups of robots}
 %\title{Proximal interaction between an operator and a group of robots based on electroencephalography} % Fix!
 
-\titlerunning{EEG as a proximal human interaction method with a group of robots}% for an abbreviated version of your contribution title if the original one is too long
+%\titlerunning{EEG as a proximal human interaction method with a group of robots}% for an abbreviated version of your contribution title if the original one is too long
 
 \author{Luca Mondada \and
 	Mohammad Ehsanul Karim  \and
@@ -181,7 +181,9 @@ Figure \ref{fig:thymioinstall} summarizes the experimental setup. The participan
 Indeed, the frequency of 10Hz presents the highest stimuli responses, followed by 16 -- 18Hz, but BCI interfaces have been built around frequencies spanning from 4.8$Hz$ up to 43$Hz$.\\
 \\
 % PAPA: attends attends attends: "could generate excellent results"?!?
-We conducted the study with 2 subjects; the subjects had normal or corrected-to-normal vision and no history of major head injury. Both had previous experience with EEG experiments and could generate excellent results. This hypothesis was confirmed in the second study presented in this article, where one of the two subjects is referred as \textit{Subject1} and achieved the best recognition scores. \\
+We conducted the study with 2 subjects; the subjects had normal or corrected-to-normal vision and no history of major head injury. 
+Both had previous experience with EEG experiments and could generate excellent results. 
+This hypothesis was confirmed in the second study presented in this article, where one of the two subjects is referred as \textit{Subject1} and achieved the best recognition scores. \\
 \\
 We ran 2 experiments with each subject. Each experiment was composed of a training and a test session. During the training session, the participants were instructed to look at an indicated target robot. One second after the instruction, all three targets began to flicker for 7$s$. During the stimulus, the subjects were asked to look at the blinking light; moreover they were requested to blink as little as possible to limit EEG artifacts. A break of 4$s$ was then introduced to avoid tiring the subject. This process was repeated 8 times for each target frequency plus a neutral non-blinking condition. The training session lasted around 6.5 minutes. We then moved to the test session, with identical conditions.\\
 \\
@@ -461,8 +463,7 @@ Although theoretically the 8$Hz$ to 12$Hz$ frequency range could allow to classi
 However, this selection technique could be combined with other approaches, such as detection of head orientation, allowing to pre-select part of the swarm and use the EEG-based technique for a subset of the swarm.\\
 \\
 Another limitation of this approach is the required delay of 4 seconds before recognition.
-% PAPA: est-ce que ca, ca veut dire que les retards sont similaires aux autres scenarios ou est-ce que ca veut dire que notre scenario pourrait profiter d'un scenario hybride?
-This delay can be compared with the delay of gesture recognition or speech interaction when considering the complete time of interaction.
+This delay is similar to the delay of gesture recognition or speech interaction when considering the complete time of interaction.
 This could possibly be solved using more sophisticated processing chains -- for instance combining CCA with STFT.
 More importantly, such limitations of EEG processing techniques could be solved using one of greatest advantages of this approach: its possibility of combination with other HRI channels.
 Indeed, the implicit communication used in SSVEP means that integrating EEG analysis in other scenarios could enhance the global performance of the setup without requiring any additional effort from the user.\\
