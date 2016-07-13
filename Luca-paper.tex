@@ -492,28 +492,28 @@ These preliminary tests improved significantly the whole interaction and show th
 
 \section{Conclusions}
 This study systematically analyzes two established SSVEP-related EEG classification techniques and some of their key parameters for tackling the robot selection problem using the Emotiv EPOC and the Thymio robot, and proposes a new methodology for addressing HRsI. 
-In respect to the existing literature based on explicit gesture or voice-based interaction, this approach uses implicit information that is not culture-dependent and does not require prior learning. 
-In respect to other potential gaze-based approaches, such as eye-tracking devices, the CCA-based SSVEP classifier does not require training nor calibration while still obtaining performances that can reach success rates well above 75\% for some individuals.\\
+With respect to the existing literature based on explicit gesture or voice-based interaction, this approach uses implicit information that is not culture-dependent and does not require prior learning. 
+With respect to other potential gaze-based approaches, such as eye-tracking devices, the CCA-based SSVEP classifier does not require training nor calibration while still obtaining performances that can reach success rates well above 75\% for some individuals.\\
 \\
 This is also the first study giving an estimation of the potential distance of robot detection using this technique.
-Despite the limited range observed in our experiments, less than 2$m$, this distance has to be considered in respect to the size of the robot and the type of visual stimuli. We consider that the setup used in this experiment is equivalent to a robot with a diameter of 60$cm$ placed up to 10$m$ away and having a blinking LED of 7.5$W$. 
+Despite the limited range observed in our experiments, less than 2$m$, this distance has to be considered with respect to the size of the robot and the type of visual stimuli. We consider that the setup used in this experiment is equivalent to a robot with a diameter of 60$cm$ placed up to 10$m$ away and having a blinking LED of 7.5$W$. 
 We can speculate that these conditions are realistic for a concrete application.\\
 \\
 One limitation of the current setup comes from the number of available frequencies.
-Although theoretically the 8\,$Hz$ to 12\,$Hz$ frequency range could allow to classify up to 20 different frequencies~\cite{SSVEPfiability}, the number of possible detected robots limits the scalability of the approach. 
-However, this selection technique could be combined with other approaches, such as detection of head orientation, allowing to pre-select part of the swarm and use the EEG-based technique for a subset of the swarm.\\
+Although theoretically the 8\,$Hz$ to 12\,$Hz$ frequency range could allow the classification of up to 20 different frequencies~\cite{SSVEPfiability}, the number of possible detected robots limits the scalability of the approach. 
+However, this selection technique could be combined with other approaches, such as detection of head orientation, allowing operators to pre-select part of the swarm and to use the EEG-based technique for a subset of the swarm.\\
 \\
-Another limitation of this approach is the required delay of 4 seconds before recognition.
+Another limitation of this approach is the required delay of four seconds before recognition.
 This delay is similar to the delay of gesture recognition or speech interaction when considering the complete time of interaction.
-This could possibly be solved using more sophisticated processing chains -- for instance combining CCA with STFT.
+This could possibly be solved using more sophisticated processing chains -- for instance, combining CCA with STFT.
 More importantly, such limitations of EEG processing techniques could be solved using one of greatest advantages of this approach: its possibility of combination with other HRI channels.
 Indeed, the implicit communication used in SSVEP means that integrating EEG analysis in other scenarios could enhance the global performance of the setup without requiring any additional effort from the user.\\
 \\
-Some factors that are uncontrollable in a real world applications such as muscular artifacts or personal attitudes of the pilot could impact negatively the performances of such a solution.
-This can be particularly significant if the robots are moving and the user need to track them visually. 
-Other factors such as the relative surrounding brightness, the variable distance to the targets, and the blinking light interferences with other robots should be carefully considered to reach the best performance. \\
+Some factors that are uncontrollable in real world applications, such as muscular artifacts or personal attitudes of the pilot, could negatively impact the performances of such a solution.
+This can be particularly significant if the robots are moving and the user needs to track them visually. 
+Other factors, such as the relative surrounding brightness, the variable distance to the targets, and blinking light interferences with other robots, should be carefully considered to reach optimal performance. \\
 \\
-Yet to conclude we believe that despite the limiting factors highlighted by our work, the very positive results show that an efficient combination of EEG and swarm, collective or distributed robotics could open new interesting possibilities in HRsI.\\
+In conclusion we believe that despite the limiting factors highlighted by our work, the very positive results show that an efficient combination of EEG and swarm, collective, or distributed robotics could open new interesting possibilities in HRsI.\\
 
 \iffalse
 
@@ -588,7 +588,7 @@ Yet to conclude we believe that despite the limiting factors highlighted by our 
 % Finally, while some factors that are uncontrollable in a real world application, such as muscular artifacts; the relative surrounding brightness, variable distance to the targets and blinking light interferences from other robots must still be controlled; 
 
 \begin{acknowledgement}
-Many thanks to Dr. Ricardo Chavarriaga, Dr. Claire Braboszcz and Dr. Serafeim Perdikis for the constructive discussions about experiments involving EEG, to Dr. J\'er\^ome Scherer and Prof. Marco Picasso for their help on mathematical issues in the signal processing, and to all subjects who were available for the experiments. This work was partially supported by the Swiss National Center of Competence in Research "Robotics".
+Many thanks to Dr. Ricardo Chavarriaga, Dr. Claire Braboszcz and Dr. Serafeim Perdikis for the constructive discussions about experiments involving EEG, to Dr. J\'er\^ome Scherer and Prof. Marco Picasso for their help on mathematical issues in the signal processing, and to all subjects who were available for the experiments. This work was partially supported by the Swiss National Center of Competence in Research ``Robotics."
 \end{acknowledgement}
 
 \bibliography{mybib}
