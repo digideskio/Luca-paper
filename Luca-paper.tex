@@ -98,8 +98,9 @@ In addition to the autonomous control strategies, there are multiple challenges 
 Although many single-robot control interfaces have shown interesting results, efficiently controlling a robotic swarm, for instance, is still a state-of-the-art problem~\cite{Kolling2016}.
 In this paper we will use the acronym HRsI (\textit{robot} pluralized) to define human-robot interaction with groups of robots, these being swarms or simply multiple individual robots.\\
 \\
-Although a majority of researchers in HRsI work on remote interactions with a distant group of robots, some applications do rely on a shared environment between the operator and the robotic system~\cite{Kolling2016}. 
-In these situations, the operator can directly observe a part or the whole group of robots and can have proximal interactions with it. 
+Although a majority of researchers in HRsI work on remote interactions with a distant group of robots, some applications do rely on a shared environment between the operator and the robotic system. 
+In these situations, the operator can directly observe a part or the whole group of robots and can have direct interactions with it. 
+When the operator shares the environment with the robots, can observe it and can directly interact with the robots, we call this interaction \textit{proximal}, in opposition to \textit{remote} interactions~\cite{Kolling2016}.
 Triggering the interaction with a specific robot can either allow the operator to control a robot working independently within a group or to control a swarm, for instance through a leader~\cite{Goodrich2012}.
 Triggering the interaction of a single robot among a group is a challenging HRsI problem: \textit{Is there a robust and intuitive method to establish a connection between a particular member of the robot group and the human controller? 
 Put another way, how can we efficiently select one particular robot from the group?} Fong et al. have proposed a simple selection protocol that uniquely identifies each robot using a numbering system; the selection and manipulation of the robots were performed via remote control \cite{fong2003}. 
@@ -115,7 +116,8 @@ However, speech and gesture interaction systems have some practical limitations:
 \\ 
 As a novel approach, this study analyzes the use of electroencephalography (EEG) signals to address the robot selection problem. 
 This approach does not require the definition and learning of explicit communication codes, as it is based on the implicit information extracted by EEG of the operator observing the robot. 
-It is not culture-dependent, and its technique, EEG, has been shown to enable better detection of the intention to interact~\cite{Rzepecki2012}.
+We define \textit{implicit} information as provided by the human in a passive way, in opposition to \textit{explicit} information exchanged actively~\cite{Kirchner2015}.
+EEG-based implicit information is not culture-dependent, and EEG techniques enable better detection of the intention to interact~\cite{Rzepecki2012}.
 Recent advances in neuroscience provide us with reliable and affordable devices that allow acquisition of two reliable and well-documented EEG neural responses -- the P300 and steady-state visually evoked potential (SSVEP) \cite{Beverina2003,Bi2013,Zhu2010}. 
 The P300 neural response is elicited as a reaction to salient stimuli. 
 The SSVEP, on the other hand, is measured when a visual stimulus is repeatedly shown at a certain frequency. Although the P300 response has been given more attention, recent studies show that target selection can be achieved efficiently using SSVEP since it is possible to distinguish reliably multiple SSVEP responses corresponding to different frequencies through computational analysis \cite{SSVEPfiability}.
